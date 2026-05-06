@@ -338,6 +338,7 @@ python3 scripts/x_comment_acquisition.py \
 
 ## 注意事项
 
+0. **x平台账号**: X 平台的账号必须认证会员，否则评论只有自己能看到
 1. **280字符限制**: X 平台硬性限制，内容+链接+标签必须≤280字符
 2. **登录状态**: 使用 BrowserWing 前需手动登录 X 账号
 3. **风控**: 建议首次使用 `--dry-run` 测试，避免频繁操作导致封号
@@ -385,10 +386,6 @@ curl http://127.0.0.1:8080/health
 ## License
 
 MIT License
-
-## 作者
-
-贾绍杉 (jiashaoshan)
 
 ---
 
