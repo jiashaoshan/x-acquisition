@@ -1,0 +1,17 @@
+{
+  "min_score": 60,
+  "max_comments_per_run": 5,
+  "max_comments_per_day": 20,
+  "min_comment_interval": 180,
+  "banned_keywords": [
+    "spam",
+    "scam",
+    "fake",
+    "诈骗",
+    "虚假"
+  ],
+  "active_hours": {
+    "start": 8,
+    "end": 23
+  }
+}

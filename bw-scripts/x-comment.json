@@ -1,0 +1,127 @@
+{
+  "id": "529333b7-d324-409b-8812-3285b3a12cd0",
+  "name": "评论推特帖子",
+  "description": "在指定X帖子下发表评论",
+  "url": "${帖子链接}",
+  "actions": [
+    {
+      "type": "sleep",
+      "timestamp": 1778060222751,
+      "selector": "",
+      "xpath": "",
+      "value": "",
+      "url": "",
+      "duration": 2475,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "description": "自动等待 2.5 秒"
+    },
+    {
+      "type": "input",
+      "timestamp": 1778060230175,
+      "selector": "div[data-testid=\"tweetTextarea_0\"]",
+      "xpath": "//div[@data-testid=\"tweetTextarea_0\"]",
+      "value": "${内容}",
+      "url": "",
+      "duration": 0,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "intent": {
+        "verb": "input",
+        "object": "Post text"
+      },
+      "accessibility": {
+        "role": "textbox",
+        "name": "Post text"
+      },
+      "context": {
+        "nearby_text": ["1", "@JSantacruc85577 and @Bosshaha...", "//*[@id=\"react-root\"]/div/div/..."],
+        "ancestor_tags": ["div", "div", "div", "div", "div", "div", "div", "div", "div", "div"]
+      },
+      "evidence": {
+        "confidence": 0.8
+      }
+    },
+    {
+      "type": "sleep",
+      "timestamp": 1778060230176,
+      "selector": "",
+      "xpath": "",
+      "value": "",
+      "url": "",
+      "duration": 1707,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "description": "自动等待 1.7 秒"
+    },
+    {
+      "type": "click",
+      "timestamp": 1778060235396,
+      "selector": "span",
+      "xpath": "//*[@id=\"react-root\"]/div/div/div[2]/main/div/div/div/div[1]/div/section/div/div/div[1]/div/div/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[2]/div[2]/div/div/div/div[2]/button/div/div/span/span",
+      "value": "",
+      "url": "",
+      "duration": 0,
+      "x": 889,
+      "y": 475,
+      "text": "Reply",
+      "tag_name": "",
+      "attrs": null,
+      "intent": {
+        "verb": "click",
+        "object": "Reply"
+      },
+      "accessibility": {
+        "role": "generic",
+        "name": "Reply"
+      },
+      "context": {
+        "nearby_text": ["<span>"],
+        "ancestor_tags": ["span", "div", "div", "button", "div", "div", "div", "div", "div", "div"]
+      },
+      "evidence": {
+        "confidence": 0.7
+      }
+    },
+    {
+      "type": "sleep",
+      "timestamp": 1778060922905,
+      "selector": "",
+      "xpath": "",
+      "value": "",
+      "url": "",
+      "duration": 2707,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "description": "自动等待 1.7 秒"
+    }
+  ],
+  "created_at": "2026-05-06T17:38:13.15531+08:00",
+  "updated_at": "2026-05-06T17:57:53.08019+08:00",
+  "tags": null,
+  "group": "",
+  "duration": 700154,
+  "can_publish": false,
+  "can_fetch": false,
+  "requires_login": false,
+  "is_mcp_command": false,
+  "mcp_command_name": "",
+  "mcp_command_description": "",
+  "mcp_input_schema": null,
+  "variables": {
+    "内容": "111",
+    "帖子链接": "https://x.com/JSantacruc85577/status/2051950628939923719"
+  }
+}

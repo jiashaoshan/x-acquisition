@@ -1,0 +1,155 @@
+{
+  "id": "315acb7e-e73e-4af2-b351-575ce7065d9b",
+  "name": "推特平台发帖",
+  "description": "x平台发帖",
+  "url": "https://x.com",
+  "actions": [
+    {
+      "type": "click",
+      "timestamp": 1778061265936,
+      "selector": "div.css-146c3p1.r-qvutc0",
+      "xpath": "//*[@id=\"react-root\"]/div/div/div[2]/header/div/div/div/div[1]/div[3]/a/div",
+      "value": "",
+      "url": "",
+      "duration": 0,
+      "x": 138,
+      "y": 693,
+      "text": "Post",
+      "tag_name": "",
+      "attrs": null,
+      "intent": {
+        "verb": "click",
+        "object": "Post"
+      },
+      "accessibility": {
+        "role": "generic",
+        "name": "Post"
+      },
+      "context": {
+        "nearby_text": ["More"],
+        "ancestor_tags": ["a", "div", "div", "div", "div", "div", "header", "div", "div", "div"]
+      },
+      "evidence": {
+        "confidence": 0.7
+      }
+    },
+    {
+      "type": "sleep",
+      "timestamp": 1778061265937,
+      "selector": "",
+      "xpath": "",
+      "value": "",
+      "url": "",
+      "duration": 2451,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "description": "自动等待 2.5 秒"
+    },
+    {
+      "type": "input",
+      "timestamp": 1778061273289,
+      "selector": "div[data-testid=\"tweetTextarea_0\"]",
+      "xpath": "//div[@data-testid=\"tweetTextarea_0\"]",
+      "value": "${内容}",
+      "url": "",
+      "duration": 0,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "intent": {
+        "verb": "input",
+        "object": "Post text"
+      },
+      "accessibility": {
+        "role": "textbox",
+        "name": "Post text"
+      },
+      "context": {
+        "nearby_text": ["2h", "//*[@id=\"layers\"]/div[2]/div/d..."],
+        "ancestor_tags": ["div", "div", "div", "div", "div", "div", "div", "div", "div", "div"]
+      },
+      "evidence": {
+        "confidence": 0.8
+      }
+    },
+    {
+      "type": "sleep",
+      "timestamp": 1778061273290,
+      "selector": "",
+      "xpath": "",
+      "value": "",
+      "url": "",
+      "duration": 1234,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "description": "自动等待 0.9 秒"
+    },
+    {
+      "type": "click",
+      "timestamp": 1778061276166,
+      "selector": "button[data-testid=\"tweetButton\"]",
+      "xpath": "//button[@data-testid=\"tweetButton\"]",
+      "value": "",
+      "url": "",
+      "duration": 0,
+      "x": 941,
+      "y": 308,
+      "text": "Post",
+      "tag_name": "",
+      "attrs": null,
+      "intent": {
+        "verb": "click",
+        "object": "Post"
+      },
+      "accessibility": {
+        "role": "button",
+        "name": "Post"
+      },
+      "context": {
+        "nearby_text": ["<button>"],
+        "ancestor_tags": ["div", "div", "div", "div", "div", "div", "div", "div", "div", "div"]
+      },
+      "evidence": {
+        "confidence": 0.7
+      }
+    },
+    {
+      "type": "sleep",
+      "timestamp": 1778061333582,
+      "selector": "",
+      "xpath": "",
+      "value": "",
+      "url": "",
+      "duration": 2012,
+      "x": 0,
+      "y": 0,
+      "text": "",
+      "tag_name": "",
+      "attrs": null,
+      "description": "自动等待 0.9 秒"
+    }
+  ],
+  "created_at": "2026-05-06T17:54:57.028043+08:00",
+  "updated_at": "2026-05-06T17:57:23.279996+08:00",
+  "tags": null,
+  "group": "",
+  "duration": 67646,
+  "can_publish": false,
+  "can_fetch": false,
+  "requires_login": false,
+  "is_mcp_command": false,
+  "mcp_command_name": "",
+  "mcp_command_description": "",
+  "mcp_input_schema": null,
+  "variables": {
+    "内容": "111"
+  }
+}
