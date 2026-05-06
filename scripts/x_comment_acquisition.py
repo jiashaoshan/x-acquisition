@@ -77,12 +77,18 @@ def search_posts(keyword: str) -> List[Dict[str, Any]]:
         
         print(f"[INFO] Search result keys: {result.keys()}")
         
+        # 从 result.result.extracted_data 中提取数据
+        extracted_data = {}
+        if "result" in result and isinstance(result["result"], dict):
+            if "extracted_data" in result["result"]:
+                extracted_data = result["result"]["extracted_data"]
+        
         # 合并 result0, result1, result2
         all_posts = []
         for key in ["result0", "result1", "result2"]:
-            if key in result and result[key]:
+            if key in extracted_data and extracted_data[key]:
                 try:
-                    posts = json.loads(result[key]) if isinstance(result[key], str) else result[key]
+                    posts = extracted_data[key]
                     if isinstance(posts, list):
                         all_posts.extend(posts)
                     elif isinstance(posts, dict):

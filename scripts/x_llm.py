@@ -111,9 +111,69 @@ def generate_post_content(product_url: str, product_name: str = "") -> Dict[str,
         return {"content": response.strip()}
 
 
+def detect_language(text: str) -> str:
+    """
+    检测文本语言
+    
+    Args:
+        text: 待检测文本
+    
+    Returns:
+        语言代码 (zh, ja, en, ko, etc.)
+    """
+    import re
+    
+    # 优先级1: 韩文（最优先，避免被其他检测覆盖）
+    # 韩文音节 (Hangul Syllables): U+AC00-U+D7AF
+    # 韩文 Jamo: U+1100-U+11FF, U+3130-U+318F
+    if re.search(r'[\uac00-\ud7af\u1100-\u11ff\u3130-\u318f]', text):
+        return 'ko'
+    
+    # 优先级2: 日文假名
+    elif re.search(r'[\u3040-\u309f\u30a0-\u30ff]', text):  # 平假名/片假名
+        return 'ja'
+    
+    # 优先级3: 中日韩汉字（CJK）
+    elif re.search(r'[\u4e00-\u9fff]', text):
+        # 如果包含假名，前面已经返回 ja 了
+        # 检查是否有韩文特有的汉字用法或韩文
+        ko_specific = ['합니다', '입니다', '감사합니다', '안녕하세요', '그런데']
+        if any(kw in text for kw in ko_specific):
+            return 'ko'
+        return 'zh'  # 默认中文
+    
+    # 优先级4: 其他语言
+    elif re.search(r'[\u0400-\u04ff]', text):  # 俄文
+        return 'ru'
+    elif re.search(r'[\u0600-\u06ff]', text):  # 阿拉伯文
+        return 'ar'
+    elif re.search(r'[a-zA-Z]', text):  # 英文
+        return 'en'
+    else:
+        return 'en'  # 默认英文
+
+
+def get_language_name(lang_code: str) -> str:
+    """获取语言名称"""
+    lang_map = {
+        'zh': '中文',
+        'ja': '日语',
+        'en': '英语',
+        'ko': '韩语',
+        'ru': '俄语',
+        'ar': '阿拉伯语',
+        'fr': '法语',
+        'de': '德语',
+        'es': '西班牙语',
+        'pt': '葡萄牙语',
+        'it': '意大利语',
+    }
+    return lang_map.get(lang_code, 'auto')
+
+
 def generate_comment(post_content: str, product_url: str, product_name: str = "") -> str:
     """
-    根据帖子内容生成评论
+    根据帖子内容生成评论（自动匹配帖子语言）
     
     Args:
         post_content: 帖子内容
@@ -121,9 +181,15 @@ def generate_comment(post_content: str, product_url: str, product_name: str = ""
         product_name: 产品名称
     
     Returns:
-        评论内容
+        评论内容（与帖子同语言）
     """
-    system_prompt = """你是 X 平台的互动专家。根据帖子内容生成自然、有价值的评论。
+    # 检测帖子语言
+    detected_lang = detect_language(post_content)
+    lang_name = get_language_name(detected_lang)
+    
+    # 根据语言调整系统提示词
+    system_prompt = f"""你是 X 平台的互动专家。根据帖子内容生成自然、有价值的评论。
+【重要】帖子语言是 {lang_name}，你必须用 {lang_name} 回复！
 要求：
 1. 评论与帖子内容相关
 2. 自然融入产品信息（不要硬广）
@@ -140,14 +206,17 @@ def generate_comment(post_content: str, product_url: str, product_name: str = ""
 - 链接：{product_url}
 - 名称：{product_name or "AI工具"}
 
-要求：
-- 【严格限制】评论长度 50-280 字符（包含链接）
-- 如果内容+链接超过 280 字符，请精简内容
-- 与帖子内容相关
-- 自然提及产品（可选）
-- 语气友好，像真实用户
+【重要要求】：
+1. 【语言】检测到帖子语言是 {lang_name}，你必须用 {lang_name} 回复！
+   - 如果帖子是中文，你用中文回复
+   - 如果帖子是日语，你用日语回复（使用敬语）
+   - 如果帖子是英语，你用英语回复
+   - 以此类推
+2. 【长度】评论长度 50-280 字符（包含链接）
+3. 【内容】与帖子内容相关，自然提及产品（可选）
+4. 【语气】友好、像真实用户
 
-直接输出评论内容："""
+请用 {lang_name} 直接输出评论内容："""
 
     return call_llm(prompt, system_prompt, temperature=0.8, max_tokens=500)
 
